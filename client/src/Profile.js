@@ -9,14 +9,14 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageRepos: this.props.repos && this.props.repos.slice(0, 8),
-            current: this.props.repos,
+            pageRepos: this.props.repos && this.props.repos.slice(0, 8), // array of repos to display per page(pagination)
+            current: this.props.repos, //array containing all the repos used by the filter function
             repos: true,
             view: false,
             page: 1,
         };
     }
-
+    // responsible for filtering the repos
     filterRepos(e) {
         if (e.target.value == "") {
             this.setState({pageRepos: this.props.repos.slice(0, 8)});
@@ -38,19 +38,21 @@ class Profile extends React.Component {
             });
         }
     }
-
+    // responsible for rendering the overview of the profile when you select overview
     renderView(e) {
         this.setState({repos: false, view: true});
         e.target.classList.add("active");
         document.getElementsByClassName("change")[1].classList.remove("active");
     }
 
+    // responsible for rendering the overview of the profile when you select overview
     renderRepos(e) {
         this.setState({repos: true, view: false});
         e.target.classList.add("active");
         document.getElementsByClassName("change")[0].classList.remove("active");
     }
 
+    // used for the pagination to render 8 repos per page
     changeRepos(e) {
         this.setState({
             page: e.target.innerText,

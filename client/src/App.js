@@ -12,13 +12,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        repos: [],
-        user: null,
-        first_visit: true,
-        loading: false,
+        repos: [],  // array of all the user repos
+        user: null, // user information
+        first_visit: true, // used for redirect the user to the home page in case you activate it in the routes
+        loading: false, // to display the spin while loading data
     };
   }
-
+    //function responsible for searching the user github account and get his repositories
   async search(term) {
     this.setState({loading: true, first_visit: false });
     await axios
@@ -42,6 +42,8 @@ class App extends React.Component {
 
   render() {
     return (
+        // at first there was HomePage lack of time I did'nt get the chance to work on some details to make it perfect. you still can activate it
+        // by disabling the comments inside the router and comment the last Route tag
         <Router>
           {/*<Route exact path='/' component={() => !this.state.user ? <HomePage user={this.state.user} found={this.state.found} search={this.search.bind(this)}/> :*/}
           {/*    <Redirect to='/profile'/>}/>*/}
